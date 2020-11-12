@@ -3,6 +3,7 @@ package com.wdcm.jvm.collection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * ArrayList多线程环境不安全验证  java.util.ConcurrentModificationException
