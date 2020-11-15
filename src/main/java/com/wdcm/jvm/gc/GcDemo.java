@@ -1,8 +1,9 @@
 package com.wdcm.jvm.gc;
 
+import java.lang.ref.PhantomReference;
+import java.lang.ref.ReferenceQueue;
 import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
-import java.util.WeakHashMap;
 
 public class GcDemo {
     public static void main(String[] args) throws InterruptedException {
@@ -56,8 +57,19 @@ public class GcDemo {
         System.out.println(weakReference.get());
         System.out.println("========================================================");
 
+        Object o5 = new Object();
+        ReferenceQueue referenceQueue = new ReferenceQueue();
+        PhantomReference phantomReference = new PhantomReference(o5, referenceQueue);
+        System.out.println(o5);
+        System.out.println(phantomReference.get());
+        System.out.println(referenceQueue);
+        o5 = null;
+        System.gc();
+        System.out.println(o5);
+        System.out.println(phantomReference.get());
+        System.out.println(referenceQueue);
 
-        WeakHashMap weakHashMap = new WeakHashMap();
+//        WeakHashMap weakHashMap = new WeakHashMap();
     }
 
 }
